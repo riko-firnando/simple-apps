@@ -7,6 +7,10 @@
     "dev": "nodemon app",
     "start": "node app",
     "test": "jest --forceExit testing/",
+<<<<<<< HEAD
+=======
+    //"test:coverage": "jest --coverage testing/"
+>>>>>>> 94e340676de92d1e02a1fae0a0045da913d35514
     "test:coverage": "jest --forceExit --coverage testing/"
   },
   "author": "Moch Rafi Riadi",

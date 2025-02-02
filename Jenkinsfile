@@ -11,7 +11,10 @@ pipeline {
         stage('Build & Test') {
             steps {
                 sh '''
-                cd app
+                pwd
+                ls -l
+                [ -d "apps" ] || { echo "Directory 'apps' not found!"; exit 1; }
+                cd apps
                 npm install
                 npm test
                 npm run test:coverage
@@ -22,7 +25,10 @@ pipeline {
         stage('Code Review') {
             steps {
                 sh '''
-                cd app
+                pwd
+                ls -l
+                [ -d "apps" ] || { echo "Directory 'apps' not found!"; exit 1; }
+                cd apps
                 sonar-scanner \
                     -Dsonar.projectKey=simple-apps \
                     -Dsonar.sources=. \
@@ -35,8 +41,9 @@ pipeline {
         stage('Deploy & Backup') {
             steps {
                 sh '''
+                pwd
+                ls -l
                 docker compose up --build -d
-                docker compose push
                 '''
             }
         }
